@@ -30,5 +30,23 @@ public class LocacaoService {
 
 	public static void main(String[] args) {
 		
+		
+		// Faça um teste do metodo alugarFilme() apenas usando Java. 
+		// Para simplificar vamos verificar apenas o valor do filme, a data de locação e data de retorno
+		// Todo teste deve ser estruturado da seguinte forma:
+		
+		// CENARIOS: Montagem de ambiente
+		
+		
+		
+		// ACAO : O teste
+		
+		
+		
+		
+		// VERIFICACAO : Checar resultado do teste
+		
+		
+		
 	}
 }
