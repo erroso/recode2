@@ -4,11 +4,25 @@ import static br.com.qualiti.utils.DataUtils.adicionarDias;
 
 import java.util.Date;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import br.com.qualiti.entidades.Filme;
 import br.com.qualiti.entidades.Locacao;
 import br.com.qualiti.entidades.Usuario;
+import br.com.qualiti.utils.DataUtils;
 
 public class LocacaoService {
+	
+	
+	public String vPublica;
+	protected String vProtegida;
+	private String vPrivada;
+	String vDefault;
+		
+	
+	// desafio 2: lanÁar excecao de filme sem estoque
+	// requisito: n„o deve alugar filmes sem estoque
 	
 	public Locacao alugarFilme(Usuario usuario, Filme filme) {
 		Locacao locacao = new Locacao();
@@ -28,25 +42,5 @@ public class LocacaoService {
 		return locacao;
 	}
 
-	public static void main(String[] args) {
-		
-		
-		// Fa√ßa um teste do metodo alugarFilme() apenas usando Java. 
-		// Para simplificar vamos verificar apenas o valor do filme, a data de loca√ß√£o e data de retorno
-		// Todo teste deve ser estruturado da seguinte forma:
-		
-		// CENARIOS: Montagem de ambiente
-		
-		
-		
-		// ACAO : O teste
-		
-		
-		
-		
-		// VERIFICACAO : Checar resultado do teste
-		
-		
-		
-	}
+	
 }
