@@ -16,7 +16,7 @@ public class ExemploTest {
 	
 	@Test
 	@DisplayName("Meu primeiro teste no JUnit")
-	public void meuPrimeiroTeste() {
+	public void meuPrimeiroTeste() throws Exception {
 		
 		
 		// Faça um teste do metodo alugarFilme() apenas usando Java. 

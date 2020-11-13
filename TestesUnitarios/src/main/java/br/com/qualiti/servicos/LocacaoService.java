@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import br.com.qualiti.entidades.Filme;
 import br.com.qualiti.entidades.Locacao;
 import br.com.qualiti.entidades.Usuario;
+import br.com.qualiti.exceptions.LocadoraException;
 import br.com.qualiti.utils.DataUtils;
 
 public class LocacaoService {
@@ -21,10 +22,27 @@ public class LocacaoService {
 	String vDefault;
 		
 	
-	// desafio 2: lançar excecao de filme sem estoque
+	// Desafio 2: lançar excecao de filme sem estoque
 	// requisito: não deve alugar filmes sem estoque
 	
-	public Locacao alugarFilme(Usuario usuario, Filme filme) {
+	// Desafio 3: lançar excecao usuario e filme não pode ser nulo
+	// Requisito: Usuario e filmes sao obrigatorios
+	
+	// Desafio 4: Alugar mais de um filme
+	// Requisito: O usuario pode alugar mais de um filme
+	
+	
+	public Locacao alugarFilme(Usuario usuario, Filme filme) throws LocadoraException {
+		if(filme==null) {
+			throw new LocadoraException("Filme nulo");
+		} else if(filme.getEstoque()==0) {
+			throw new LocadoraException("Filme sem estoque");
+		}
+		
+		if(usuario==null) {
+			throw new LocadoraException("Usuario nulo");
+		}	
+		
 		Locacao locacao = new Locacao();
 		locacao.setFilme(filme);
 		locacao.setUsuario(usuario);
