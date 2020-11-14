@@ -1,11 +1,12 @@
 package br.com.qualiti.servicos;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -66,10 +67,11 @@ public class LocacaoServiceTest {
 		// CENARIOS: Montagem de ambiente
 
 		Usuario usuario =new Usuario("Usuario 1");
-		Filme filme = new Filme("Filme 1", 2, 5.0);
+//		Filme filme = new Filme("Filme 1", 2, 5.0);
+		List<Filme> filmes = Arrays.asList(new Filme("Filme 1", 2, 5.0));
 		
 		// ACAO : O teste
-		Locacao locacao = service.alugarFilme(usuario, filme);
+		Locacao locacao = service.alugarFilme(usuario, filmes);
 
 		// VERIFICACAO : Checar resultado do teste
 		
@@ -86,12 +88,12 @@ public class LocacaoServiceTest {
 		System.out.println("-- teste 2 --");	
 		// cenario
 		Usuario usuario = new Usuario("Usuario 1");
-		Filme filme = new Filme("Filme 1", 0, 5.0);
+		List<Filme> filmes = Arrays.asList(new Filme("Filme 1", 0, 5.0));
 		// acao
 		
 		Exception exceptionEsperada = assertThrows(Exception.class, () -> {
 				//metodo que lanca a excecao
-				service.alugarFilme(usuario, filme);
+				service.alugarFilme(usuario, filmes);
 		});
 		
 		//verificacao
@@ -106,11 +108,12 @@ public class LocacaoServiceTest {
 		// cenario
 		Usuario usuario = new Usuario("Usuario 1");
 		Filme filme = null;
+		List<Filme> filmes = Arrays.asList(filme);
 		// acao
 		
 		LocadoraException exceptionEsperada = assertThrows(LocadoraException.class, () -> {
 				//metodo que lanca a excecao
-				service.alugarFilme(usuario, filme);
+				service.alugarFilme(usuario, filmes);
 		});
 		
 		//verificacao
@@ -121,26 +124,25 @@ public class LocacaoServiceTest {
 	@Test
 	@DisplayName("Verificar usuario eh nulo")
 	public void verificaUsuarioEhNulo() {
-		System.out.println("-- teste 4 --");	
-		// cenario
 		Usuario usuario = null;
-		Filme filme = new Filme("Filme 1", 2, 5.0);
-		// acao	
+		List<Filme> filmes = Arrays.asList(new Filme("Filme 1", 2, 5.0));
 		LocadoraException exceptionEsperada = assertThrows(LocadoraException.class, () -> {
-				//metodo que lanca a excecao
-				service.alugarFilme(usuario, filme);
+				service.alugarFilme(usuario, filmes);
 		});
-		//verificacao
 		assertEquals(exceptionEsperada.getMessage(), "Usuario nulo");
 	}
 	
+	// Desafio 5 - 
+	// O cliente tem desconto crescentes (não acumulativos):
+	// - 25% no 3º filme
+	// - 50% no 4º filme
+	// - 75% no 5º filme
+	// - 100% no 6º filme
+	// - não tem desconto no 7º filme em diante
 	
 	
 	
-	
-	
-	
-	
+
 	
 	
 	

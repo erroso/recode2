@@ -1,6 +1,8 @@
 package br.com.qualiti.exemplo;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,11 +37,12 @@ public class ExemploTest {
 		
 		LocacaoService service = new LocacaoService();
 		Usuario usuario =new Usuario("Usuario 1");
-		Filme filme = new Filme("Filme 1", 2, 5.0);
+		List<Filme> filmes = Arrays.asList(new Filme("Filme 1", 2, 5.0));
+	
 		
 		// ACAO : O teste
 		
-		Locacao locacao = service.alugarFilme(usuario, filme);
+		Locacao locacao = service.alugarFilme(usuario, filmes);
 		
 		
 		

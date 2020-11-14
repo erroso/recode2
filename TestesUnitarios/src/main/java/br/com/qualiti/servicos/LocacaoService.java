@@ -3,6 +3,7 @@ package br.com.qualiti.servicos;
 import static br.com.qualiti.utils.DataUtils.adicionarDias;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,11 +33,20 @@ public class LocacaoService {
 	// Requisito: O usuario pode alugar mais de um filme
 	
 	
-	public Locacao alugarFilme(Usuario usuario, Filme filme) throws LocadoraException {
-		if(filme==null) {
+	
+	
+	public Locacao alugarFilme(Usuario usuario, List<Filme> filmes) throws LocadoraException {
+		if(filmes==null || filmes.isEmpty()) {
 			throw new LocadoraException("Filme nulo");
-		} else if(filme.getEstoque()==0) {
-			throw new LocadoraException("Filme sem estoque");
+		} 
+		
+		for(Filme filme : filmes) {
+			if(filme==null) {
+				throw new LocadoraException("Filme nulo");
+			}else if(filme.getEstoque()==0) {
+				throw new LocadoraException("Filme sem estoque");
+			}
+			
 		}
 		
 		if(usuario==null) {
@@ -44,10 +54,17 @@ public class LocacaoService {
 		}	
 		
 		Locacao locacao = new Locacao();
-		locacao.setFilme(filme);
+		locacao.setFilmes(filmes);
 		locacao.setUsuario(usuario);
 		locacao.setDataLocacao(new Date());
-		locacao.setValor(filme.getPrecoLocacao());
+		Double valorTotal = 0d;
+		for (int i=0; i < filmes.size() ; i++) {
+			Filme filme = filmes.get(i);
+			valorTotal += filme.getPrecoLocacao();
+			
+		}
+		
+		locacao.setValor(valorTotal);
 
 		//Entrega no dia seguinte
 		Date dataEntrega = new Date();
